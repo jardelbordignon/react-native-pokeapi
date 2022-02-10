@@ -5,11 +5,14 @@
  * @format
  */
 
-export const transformer = {
-  getTransformOptions: async () => ({
-    transform: {
-      experimentalImportSupport: false,
-      inlineRequires: true,
-    },
-  }),
-};
+// eslint-disable-next-line no-undef
+module.exports = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true
+      }
+    })
+  }
+}
