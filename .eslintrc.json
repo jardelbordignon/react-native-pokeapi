@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "react/prop-types": "off", // não avisar da falta de prop-types
+    "react/react-in-jsx-scope": "off", // A partir da versão 17 não precisa importar sempre o react
+    "@typescript-eslint/explicit-module-boundary-types": "off", // não precisa tipar o retorno de uma função quando a tipagem estiver inferida
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": "error"
+    // "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+  }
+}
