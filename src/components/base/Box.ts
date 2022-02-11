@@ -15,14 +15,31 @@ interface IBox {
     | 'space-around'
     | 'space-evenly'
   align?: 'stretch' | 'flex-start' | 'flex-end' | 'baseline' | 'center'
-  p?: string | number
+  p?: number
+  pt?: number
+  pr?: number
+  pb?: number
+  pl?: number
   py?: number
   px?: number
-  m?: string | number
+  m?: number
+  mt?: number
+  mr?: number
+  mb?: number
+  ml?: number
   my?: number
   mx?: number
   w?: string | number
   h?: string | number
+  br?: number
+  btr?: number
+  brr?: number
+  bbr?: number
+  blr?: number
+  btlr?: number
+  btrr?: number
+  bbrr?: number
+  bblr?: number
   position?: 'absolute' | 'relative'
   top?: number
   bottom?: number
@@ -38,26 +55,17 @@ export const Box = styled.View<IBox>`
   flex-direction: ${props => (props.row ? 'row' : 'column')};
   justify-content: ${props => props.justify || 'center'};
   align-items: ${props => props.align || 'center'};
-  padding: ${props =>
-    props.p
-      ? typeof props.p === 'number'
-        ? `${props.p}px`
-        : props.p
-      : props.py
-      ? `${props.py}px 0`
-      : props.px
-      ? `0 ${props.px}px`
-      : 0};
-  margin: ${props =>
-    props.m
-      ? typeof props.m === 'number'
-        ? `${props.m}px`
-        : props.m
-      : props.my
-      ? `${props.my}px 0`
-      : props.mx
-      ? `0 ${props.mx}px`
-      : 0};
+
+  padding-top: ${props => `${props.pt || props.py || props.p || 0}px`};
+  padding-right: ${props => `${props.pr || props.px || props.p || 0}px`};
+  padding-bottom: ${props => `${props.pb || props.py || props.p || 0}px`};
+  padding-left: ${props => `${props.pl || props.px || props.p || 0}px`};
+
+  margin-top: ${props => `${props.mt || props.my || props.m || 0}px`};
+  margin-right: ${props => `${props.mr || props.mx || props.m || 0}px`};
+  margin-bottom: ${props => `${props.mb || props.my || props.m || 0}px`};
+  margin-left: ${props => `${props.ml || props.mx || props.m || 0}px`};
+
   width: 100%;
   height: 100%;
   max-width: ${props =>
@@ -72,13 +80,19 @@ export const Box = styled.View<IBox>`
         ? `${props.h}px`
         : props.h
       : '100%'};
+  border-top-left-radius: ${props =>
+    `${props.btlr || props.btr || props.blr || props.br || 0}px`};
+  border-top-right-radius: ${props =>
+    `${props.btrr || props.btr || props.brr || props.br || 0}px`};
+  border-bottom-left-radius: ${props =>
+    `${props.bblr || props.bbr || props.blr || props.br || 0}px`};
+  border-bottom-right-radius: ${props =>
+    `${props.bbrr || props.bbr || props.brr || props.br || 0}px`};
+
+  top: ${props => (props.top ? `${props.top}px` : 'auto')};
+  bottom: ${props => (props.bottom ? `${props.bottom}px` : 'auto')};
+  left: ${props => (props.left ? `${props.left}px` : 'auto')};
+  right: ${props => (props.right ? `${props.right}px` : 'auto')};
+
   z-index: ${props => props.zIndex || 0};
 `
-
-/* {
-    props.position && position: ${props => props.position};
-    props.top && top: ${props => `${props.top}px`};
-    props.bottom && bottom: ${props => `${props.bottom}px`};
-    props.left && left: ${props => `${props.left}px`};
-    props.right && right: ${props => `${props.right}px`};
-  } */
