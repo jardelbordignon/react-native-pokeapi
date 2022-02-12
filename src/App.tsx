@@ -1,20 +1,16 @@
 import React from 'react'
-import { SafeAreaView, StatusBar } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
+import 'react-native-gesture-handler'
+import { View, StatusBar } from 'react-native'
 
 import { Routes } from './routes'
-import theme from './styles/theme.json'
 
-const App = () => (
-  <NavigationContainer>
+export const App = () => (
+  <View style={{ flex: 1 }}>
     <StatusBar
       barStyle="light-content"
-      backgroundColor={theme.colors.background}
+      backgroundColor="transparent"
+      translucent
     />
-    <SafeAreaView style={{ flex: 1 }}>
-      <Routes />
-    </SafeAreaView>
-  </NavigationContainer>
+    <Routes />
+  </View>
 )
-
-export default App

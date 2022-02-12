@@ -1,22 +1,22 @@
 import React from 'react'
 
-import { Box, Txt } from 'src/components/base'
+import { View, Text, Image } from 'src/components/base'
 
 export const HomeScreen = () => (
-  <Box bg="primary" p={10}>
-    <Box bg="dark" btr={60} pt={40}>
-      <Txt color="light">First Box</Txt>
-    </Box>
-    <Box bg="light" row h={60}>
-      <Box bg="dark" px={1} />
-      <Box bg="dark" bbrr={60} />
-    </Box>
-    <Box bg="dark" row h={60}>
-      <Box bg="light" px={1} btlr={60} />
-      <Box bg="light" />
-    </Box>
-    <Box bg="light" bbr={60} pb={40}>
-      <Txt>Second Box</Txt>
-    </Box>
-  </Box>
+  <View>
+    <View bg="dark" pt={40}>
+      <Image uri="https://github.com/jardelbordignon.png" wh={180} rounded />
+    </View>
+    <View bg="light" row h={60}>
+      <View bg="dark" />
+      <View bg="dark" bbrr={60} />
+    </View>
+    <View bg="dark" row h={60}>
+      <View bg="light" btlr={60} />
+      <View bg="light" />
+    </View>
+    <View bg="light" pb={40}>
+      <Text>Second View</Text>
+    </View>
+  </View>
 )

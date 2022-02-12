@@ -1,11 +1,12 @@
 import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 import { Image } from 'react-native'
 
 import { Box } from 'src/components/base'
 import { PrivateRoutes } from './private'
 import { PublicRoutes } from './public'
 
-import pokeapi_logo from 'src/assets/img/pokeapi_256.png'
+import logo from 'src/assets/img/pokeapi_256.png'
 
 export const Routes = () => {
   const loading = false
@@ -14,9 +15,13 @@ export const Routes = () => {
   if (loading)
     return (
       <Box bg="secondary">
-        <Image source={pokeapi_logo} />
+        <Image source={logo} />
       </Box>
     )
 
-  return user ? <PrivateRoutes /> : <PublicRoutes />
+  return (
+    <NavigationContainer>
+      {user ? <PrivateRoutes /> : <PublicRoutes />}
+    </NavigationContainer>
+  )
 }

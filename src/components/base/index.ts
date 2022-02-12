@@ -18,8 +18,6 @@ export type ColorTypes =
   | 'gray.100'
   | 'gray.50'
 
-export * from './Box'
-export * from './Container'
-export * from './Img'
-export * from './Spacer'
-export * from './Txt'
+export * from './Image'
+export * from './Text'
+export * from './View'
