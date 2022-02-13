@@ -18,6 +18,7 @@ export type ColorTypes =
   | 'gray.100'
   | 'gray.50'
 
+export * from './Button'
 export * from './Image'
 export * from './Text'
 export * from './View'
