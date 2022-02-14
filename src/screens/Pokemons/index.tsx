@@ -14,8 +14,6 @@ export const PokemonsScreen = () => {
     const loadPokemons = async (): Promise<void> => {
       const res = await pokemonService.findAll()
 
-      console.log(JSON.stringify(res, null, 2))
-
       const pokemons = res.results.map((pokemon: IPokemonApiItem) => {
         const id = pokemon.url.split('/')[6]
         return {

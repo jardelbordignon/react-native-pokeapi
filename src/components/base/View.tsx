@@ -10,7 +10,7 @@ interface IView {
   basis?: number
   grow?: number
   shrink?: number
-  wrap?: 'wrap' | 'nowrap' | 'wrap-reverse' | undefined
+  wrap?: 'wrap' | 'nowrap' | 'wrap-reverse'
   bg?: ColorTypes
   justify?: JustifyTypes
   align?: AlignTypes
