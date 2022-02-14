@@ -1,8 +1,8 @@
 import React from 'react'
-import { Image as RNImage } from 'react-native'
+import { Image as RNImage, ImageSourcePropType } from 'react-native'
 
 interface IImage {
-  uri: string
+  source: ImageSourcePropType | string
   rounded?: boolean
   wh?: number
   w?: number
@@ -21,9 +21,12 @@ interface IImage {
 export const Image = (props: IImage) => {
   const round = props.rounded ? 100 : 0
 
+  const source =
+    typeof props.source === 'string' ? { uri: props.source } : props.source
+
   return (
     <RNImage
-      source={{ uri: props.uri }}
+      source={source}
       style={{
         width: '100%',
         height: '100%',

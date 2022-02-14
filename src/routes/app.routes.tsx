@@ -2,17 +2,17 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 
-import Icon from 'react-native-vector-icons/Feather'
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { TabRoutes } from './tab.routes'
 
 import { HomeScreen } from '../screens/Home'
-import { PokemonsScreen } from '../screens/Pokemons'
+import { PokemonDetailsScreen } from '../screens/PokemonDetails'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export const AppRoutes = () => (
   <NavigationContainer>
-    <Navigator initialRouteName="Home">
+    <Navigator initialRouteName="Pokemons">
       <Screen
         options={{
           headerShown: false,
@@ -30,10 +30,10 @@ export const AppRoutes = () => (
       />
       <Screen
         name="PokemonDetails"
-        component={PokemonsScreen}
+        component={PokemonDetailsScreen}
         options={({ navigation }) => ({
           headerLeft: () => (
-            <Icon
+            <Icons
               name="arrow-left"
               size={24}
               color="#FFB84D"
@@ -43,7 +43,7 @@ export const AppRoutes = () => (
           headerLeftContainerStyle: {
             marginLeft: 24,
           },
-          headerRight: () => <Icon name="heart" size={24} color="#FFB84D" />,
+          headerRight: () => <Icons name="heart" size={24} color="#FFB84D" />,
           headerRightContainerStyle: {
             marginRight: 24,
           },

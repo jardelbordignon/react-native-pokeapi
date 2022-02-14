@@ -7,13 +7,17 @@ export const HomeScreen = () => {
   const { navigate } = useNavigation()
 
   const handleNavigate = async (): Promise<void> => {
-    navigate('MainBottom', { screen: 'Dashboard' })
+    navigate('MainBottom' as never, { screen: 'Dashboard' } as never)
   }
 
   return (
     <View>
       <View bg="dark" pt={40}>
-        <Image uri="https://github.com/jardelbordignon.png" wh={180} rounded />
+        <Image
+          source="https://github.com/jardelbordignon.png"
+          wh={180}
+          rounded
+        />
         <Button onPress={() => handleNavigate()}>
           <Text>Entrar</Text>
         </Button>

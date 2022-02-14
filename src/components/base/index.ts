@@ -1,3 +1,9 @@
+export * from './Button'
+export * from './Divider'
+export * from './Image'
+export * from './Text'
+export * from './View'
+
 export type ColorTypes =
   | 'primary'
   | 'secondary'
@@ -18,7 +24,17 @@ export type ColorTypes =
   | 'gray.100'
   | 'gray.50'
 
-export * from './Button'
-export * from './Image'
-export * from './Text'
-export * from './View'
+export type JustifyTypes =
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+
+export type AlignTypes =
+  | 'stretch'
+  | 'flex-start'
+  | 'flex-end'
+  | 'baseline'
+  | 'center'

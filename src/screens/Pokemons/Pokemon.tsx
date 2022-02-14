@@ -1,14 +1,24 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { SvgUri } from 'react-native-svg'
 
-import { View, Text } from 'src/components/base'
+import { Button, Divider, Text, View } from 'src/components/base'
+import { IPokemonItem } from 'src/interfaces/pokemon'
 
-interface IPokemon {
-  id: number
-  name: string
+export const Pokemon = ({ id, name, avatar_uri }: IPokemonItem) => {
+  const { navigate } = useNavigation()
+
+  return (
+    <Button
+      onPress={() => navigate('PokemonDetails' as never, { id } as never)}
+    >
+      <View dir="row" p={20} bc="gray.100" br={20} mb={10}>
+        <SvgUri uri={avatar_uri} width="100" height="100" />
+        <Divider mh={10} />
+        <Text to="capitalize" font="Pokemon" size={24}>
+          {name}
+        </Text>
+      </View>
+    </Button>
+  )
 }
-
-export const Pokemon = ({ name }: IPokemon) => (
-  <View h={60}>
-    <Text>Pokemon {name}</Text>
-  </View>
-)

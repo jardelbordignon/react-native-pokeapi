@@ -1,8 +1,14 @@
 import axios, { AxiosError, Method } from 'axios'
 
-const API_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/'
+import { ApiError } from 'src/errors/api'
 
 export class ApiService {
+  private endpoint: string
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint
+  }
+
   public get<T = any>(url: string, params?: any): Promise<T> {
     return this.request<T>('GET', url, params)
   }
@@ -37,25 +43,23 @@ export class ApiService {
       onProgress && onProgress(0)
       // const authToken = store.getState().authToken.value
 
-      const request = API_ENDPOINT
-        ? axios.request({
-            baseURL: API_ENDPOINT,
-            url,
-            method,
-            headers: {
-              // Authorization: authToken ? `Bearer ${authToken}` : null,
-              'Content-Type':
-                data instanceof FormData
-                  ? 'multipart/form-data'
-                  : 'application/json',
-            },
-            params: method === 'GET' ? data : null,
-            data: method === 'POST' || method === 'PUT' ? data : null,
-            onUploadProgress: (progress: ProgressEvent) => {
-              onProgress && onProgress((progress.loaded / progress.total) * 100)
-            },
-          })
-        : getMockValue(method, url, data)
+      const request = axios.request({
+        baseURL: this.endpoint,
+        url,
+        method,
+        headers: {
+          // Authorization: authToken ? `Bearer ${authToken}` : null,
+          'Content-Type':
+            data instanceof FormData
+              ? 'multipart/form-data'
+              : 'application/json',
+        },
+        params: method === 'GET' ? data : null,
+        data: method === 'POST' || method === 'PUT' ? data : null,
+        onUploadProgress: (progress: ProgressEvent) => {
+          onProgress && onProgress((progress.loaded / progress.total) * 100)
+        },
+      })
 
       const response = await request
       onProgress && onProgress(100)
@@ -72,5 +76,4 @@ export class ApiService {
   }
 }
 
-const apiService = new ApiService()
-export default apiService
+export const pokeapi = new ApiService('https://pokeapi.co/api/v2/pokemon')
