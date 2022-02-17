@@ -5,10 +5,13 @@ export interface IPokemonApiItem {
 
 export interface IPokemonItem extends IPokemonApiItem {
   id: number
-  avatar_uri: string
+  thumbUri: string
+  imageUri: string
+  isVisible?: boolean
 }
 
 export interface IPokemon {
+  id: number
   name: string
   avatar_uri: string
   abilities: {

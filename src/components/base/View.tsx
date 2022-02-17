@@ -1,16 +1,16 @@
 import React, { ReactNode } from 'react'
-import { View as RNView } from 'react-native'
+import { View as RNView, FlexStyle } from 'react-native'
 
 import theme from 'src/styles/theme.json'
 import { AlignTypes, ColorTypes, JustifyTypes } from '.'
 
 interface IView {
-  flex?: number
-  dir?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
-  basis?: number
-  grow?: number
-  shrink?: number
-  wrap?: 'wrap' | 'nowrap' | 'wrap-reverse'
+  flex?: FlexStyle['flex']
+  dir?: FlexStyle['flexDirection']
+  basis?: FlexStyle['flexBasis']
+  grow?: FlexStyle['flexGrow']
+  shrink?: FlexStyle['flexShrink']
+  wrap?: FlexStyle['flexWrap']
   bg?: ColorTypes
   justify?: JustifyTypes
   align?: AlignTypes
@@ -60,64 +60,112 @@ interface IView {
 
 export const View = (props: IView) => {
   // TODO: implementar gap. https://eddrichjanzzen.github.io/blog/2021/07/31/spacebetween-react-native-styling.html
-  const children = props.children
+  const {
+    flex = 1,
+    dir,
+    basis,
+    grow,
+    shrink,
+    wrap,
+    bg,
+    justify = 'center',
+    align = 'center',
+    p,
+    pt,
+    pr,
+    pb,
+    pl,
+    py,
+    pv,
+    px,
+    ph,
+    m,
+    mt,
+    mr,
+    mb,
+    ml,
+    my,
+    mv,
+    mx,
+    mh,
+    w = '100%',
+    maxW,
+    minW,
+    h = 'auto',
+    maxH,
+    minH,
+    bc,
+    bw,
+    br,
+    btr,
+    brr,
+    bbr,
+    blr,
+    btlr,
+    btrr,
+    bbrr,
+    bblr,
+    position,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex = 0,
+    children,
+  } = props
 
   return (
     <RNView
       style={{
-        flex: props.flex || 1,
-        flexDirection: props.dir,
-        flexBasis: props.basis,
-        flexGrow: props.grow,
-        flexShrink: props.shrink,
-        flexWrap: props.wrap,
-        justifyContent: props.justify || 'center',
-        alignItems: props.align || 'center',
+        flex,
+        flexDirection: dir,
+        flexBasis: basis,
+        flexGrow: grow,
+        flexShrink: shrink,
+        flexWrap: wrap,
+        justifyContent: justify,
+        alignItems: align,
 
-        backgroundColor: props.bg ? theme.colors[props.bg] : undefined,
+        backgroundColor: bg ? theme.colors[bg] : undefined,
 
-        width: props.w || '100%',
-        minWidth: props.minW,
-        maxWidth: props.maxW,
-        height: props.h || 'auto',
-        minHeight: props.minH,
-        maxHeight: props.maxH,
+        width: w,
+        minWidth: minW,
+        maxWidth: maxW,
+        height: h,
+        minHeight: minH,
+        maxHeight: maxH,
 
-        padding: props.p,
-        paddingVertical: props.pv || props.py,
-        paddingHorizontal: props.ph || props.px,
-        paddingTop: props.pt,
-        paddingRight: props.pr,
-        paddingBottom: props.pb,
-        paddingLeft: props.pl,
+        padding: p,
+        paddingVertical: pv || py,
+        paddingHorizontal: ph || px,
+        paddingTop: pt,
+        paddingRight: pr,
+        paddingBottom: pb,
+        paddingLeft: pl,
 
-        margin: props.m,
-        marginVertical: props.mv || props.my,
-        marginHorizontal: props.mh || props.mx,
-        marginTop: props.mt,
-        marginRight: props.mr,
-        marginBottom: props.mb,
-        marginLeft: props.ml,
+        margin: m,
+        marginVertical: mv || my,
+        marginHorizontal: mh || mx,
+        marginTop: mt,
+        marginRight: mr,
+        marginBottom: mb,
+        marginLeft: ml,
 
-        borderColor: props.bc ? theme.colors[props.bc] : undefined,
-        borderWidth: props.bw || props.bc ? 1 : 0,
+        borderColor: bc ? theme.colors[bc] : undefined,
+        borderWidth: bw || bc ? 1 : 0,
 
-        borderTopLeftRadius:
-          props.btlr || props.btr || props.blr || props.br || 0,
-        borderTopRightRadius:
-          props.btrr || props.btr || props.brr || props.br || 0,
-        borderBottomLeftRadius:
-          props.bblr || props.bbr || props.blr || props.br || 0,
-        borderBottomRightRadius:
-          props.bbrr || props.bbr || props.brr || props.br || 0,
+        borderTopLeftRadius: btlr || btr || blr || br || 0,
+        borderTopRightRadius: btrr || btr || brr || br || 0,
+        borderBottomLeftRadius: bblr || bbr || blr || br || 0,
+        borderBottomRightRadius: bbrr || bbr || brr || br || 0,
 
-        position: props.position,
-        top: props.top,
-        bottom: props.bottom,
-        left: props.left,
-        right: props.right,
+        position,
+        top,
+        bottom,
+        left,
+        right,
 
-        zIndex: props.zIndex || 0,
+        zIndex,
       }}
     >
       {children}

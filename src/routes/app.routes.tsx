@@ -1,66 +1,65 @@
 import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
-
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { TabRoutes } from './tab.routes'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Image } from 'react-native'
 
 import { HomeScreen } from '../screens/Home'
-import { PokemonDetailsScreen } from '../screens/PokemonDetails'
+import { MainContent } from '../screens/main'
+import { UsersContent } from '../screens/user'
+import { PokemonDetailsScreen } from 'src/screens/main/PokemonDetails'
+import { Profile } from 'src/screens/user/Profile'
+
+import theme from 'src/styles/theme.json'
+import logo from 'src/assets/pokeapi.png'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export const AppRoutes = () => (
   <NavigationContainer>
-    <Navigator initialRouteName="Pokemons">
+    <Navigator initialRouteName="Users">
+      <Screen name="Home" component={HomeScreen} />
       <Screen
+        name="Main"
+        component={MainContent}
         options={{
-          headerShown: false,
-        }}
-        name="Home"
-        component={HomeScreen}
-      />
-      <Screen
-        name="MainBottom"
-        component={TabRoutes}
-        options={{
-          headerShown: false,
-          gestureEnabled: false,
-        }}
-      />
-      <Screen
-        name="PokemonDetails"
-        component={PokemonDetailsScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <Icons
-              name="arrow-left"
-              size={24}
-              color="#FFB84D"
-              onPress={() => navigation.goBack()}
+          // title: 'Pokemons',
+          // headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+          headerTitle: () => (
+            <Image
+              style={{ height: 45, marginBottom: 10 }}
+              source={logo}
+              resizeMode="contain"
             />
           ),
-          headerLeftContainerStyle: {
-            marginLeft: 24,
-          },
-          headerRight: () => <Icons name="heart" size={24} color="#FFB84D" />,
-          headerRightContainerStyle: {
-            marginRight: 24,
-          },
-          headerTitle: 'Prato - Massas',
-          headerTitleStyle: {
-            color: '#fff',
-            fontFamily: 'Poppins-regular',
-            fontSize: 16,
-          },
-          headerStyle: {
-            backgroundColor: '#C72828',
-            elevation: 0,
-            borderWidth: 0,
-            shadowColor: 'transparent',
-          },
-        })}
+          headerTitleAlign: 'center',
+        }}
       />
+
+      <Screen
+        name="Users"
+        component={UsersContent}
+        options={{
+          // title: 'Pokemons',
+          // headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+          headerTitle: () => (
+            <Image
+              style={{ height: 45, marginBottom: 10 }}
+              source={logo}
+              resizeMode="contain"
+            />
+          ),
+          headerTitleAlign: 'center',
+        }}
+      />
+
+      <Screen name="PokemonDetails" component={PokemonDetailsScreen} />
+      <Screen name="Profile" component={Profile} />
     </Navigator>
   </NavigationContainer>
 )

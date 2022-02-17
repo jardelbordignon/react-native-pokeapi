@@ -27,7 +27,7 @@ export const Text = (props: IText) => (
         props.font === 'Pokemon'
           ? 'Ketchum' // 'PocketMonk' 'PokemonSolid'
           : `Poppins-${props.font || 'medium'}`,
-      fontSize: props.size || 22,
+      fontSize: props.size || 16,
       lineHeight: props.lineH,
       color: theme.colors[props.color || 'secondary'],
       textTransform: props.to,

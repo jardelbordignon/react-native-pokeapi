@@ -13,17 +13,19 @@ interface IDivider {
 }
 
 export const Divider = (props: IDivider) => {
-  const orientation = props.orientation || 'vertical'
+  const orientation = props.orientation || 'horizontal'
 
   return (
-    <View
-      style={{
-        width: orientation === 'horizontal' ? '90%' : props.size || 0,
-        height: orientation === 'vertical' ? '90%' : props.size || 0,
-        backgroundColor: theme.colors[props.color || 'gray.100'],
-        marginHorizontal: props.mh || 0,
-        marginVertical: props.mv || 0,
-      }}
-    />
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <View
+        style={{
+          width: orientation === 'horizontal' ? '90%' : props.size || 0,
+          height: orientation === 'vertical' ? '90%' : props.size || 0,
+          backgroundColor: theme.colors[props.color || 'gray.100'],
+          marginHorizontal: props.mh || 'auto',
+          marginVertical: props.mv || 'auto',
+        }}
+      />
+    </View>
   )
 }

@@ -1,0 +1,45 @@
+{
+  "favorites": [
+    {
+      "id": 1,
+      "userId": 1,
+      "pokemons": [1, 2, 3]
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "pokemons": [5, 6, 7, 8]
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "pokemons": [15, 16, 17, 18]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Ana",
+      "email": "ana@email.com",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Bia",
+      "email": "bia@email.com",
+      "avatarUrl": "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80"
+    },
+    {
+      "id": 3,
+      "name": "Adão",
+      "email": "adao@email.com",
+      "avatarUrl": "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+    },
+    {
+      "id": 4,
+      "name": "Ben",
+      "email": "ben@email.com",
+      "avatarUrl": "https://images.unsplash.com/photo-1597357664116-6510db2a06b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+    }
+  ]
+}

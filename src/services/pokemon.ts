@@ -1,7 +1,14 @@
 import { pokeapi } from './api'
 
-import { IPokemon } from 'src/interfaces/pokemon'
+import { IPokemon, IPokemonApiItem } from 'src/interfaces/pokemon'
 // import { IPokemonApiItem } from 'src/interfaces/pokemon'
+
+interface IFindAllReturn {
+  count: number
+  next: string | null
+  previous: string | null
+  results: IPokemonApiItem[]
+}
 
 class PokemonService {
   // public list(
@@ -11,8 +18,12 @@ class PokemonService {
   // }
 
   // IPokemonApiItem[]
-  public findAll(): Promise<any> {
-    return pokeapi.get('/?offset=0&limit=5')
+  public findAll(paginationParams?: string): Promise<IFindAllReturn> {
+    return pokeapi.get(`${paginationParams}`)
+  }
+
+  public findAllByUserdId(paginationParams?: string): Promise<IFindAllReturn> {
+    return pokeapi.get(`${paginationParams}`)
   }
 
   public findOne(id: number): Promise<IPokemon> {

@@ -6,10 +6,6 @@ import { View, Text, Image, Button } from 'src/components/base'
 export const HomeScreen = () => {
   const { navigate } = useNavigation()
 
-  const handleNavigate = async (): Promise<void> => {
-    navigate('MainBottom' as never, { screen: 'Dashboard' } as never)
-  }
-
   return (
     <View>
       <View bg="dark" pt={40}>
@@ -18,7 +14,7 @@ export const HomeScreen = () => {
           wh={180}
           rounded
         />
-        <Button onPress={() => handleNavigate()}>
+        <Button onPress={() => navigate('Main' as never)}>
           <Text>Entrar</Text>
         </Button>
       </View>

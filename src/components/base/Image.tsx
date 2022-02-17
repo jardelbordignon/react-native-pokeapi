@@ -1,12 +1,28 @@
-import React from 'react'
-import { Image as RNImage, ImageSourcePropType } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import {
+  Animated,
+  ImageBackground,
+  Image as RNImage,
+  ImageResizeMode,
+  ImageSourcePropType,
+  ImageStyle,
+  StyleProp,
+} from 'react-native'
 
 interface IImage {
-  source: ImageSourcePropType | string
+  src: ImageSourcePropType | string
+  shouldLoad?: boolean
+  srcMini?: ImageSourcePropType | string
+  resizeMode?: ImageResizeMode
+  ratio?: number
   rounded?: boolean
-  wh?: number
-  w?: number
-  h?: number
+  wh?: number | string
+  w?: number | string
+  maxW?: number | string
+  minW?: number | string
+  h?: number | string
+  maxH?: number | string
+  minH?: number | string
   br?: number
   btr?: number
   brr?: number
@@ -19,29 +35,92 @@ interface IImage {
 }
 
 export const Image = (props: IImage) => {
-  const round = props.rounded ? 100 : 0
+  const {
+    src,
+    shouldLoad = false,
+    srcMini,
+    resizeMode,
+    ratio = 1,
+    rounded,
+    wh,
+    w,
+    maxW,
+    minW,
+    h,
+    maxH,
+    minH,
+    br,
+    btr,
+    brr,
+    bbr,
+    blr,
+    btlr,
+    btrr,
+    bbrr,
+    bblr,
+  } = props
+  const round = rounded ? 100 : 0
 
-  const source =
-    typeof props.source === 'string' ? { uri: props.source } : props.source
+  const style: StyleProp<ImageStyle> = {
+    width: w || wh,
+    maxWidth: maxW,
+    minWidth: minW,
 
-  return (
-    <RNImage
+    height: h || wh,
+    maxHeight: maxH,
+    minHeight: minH,
+
+    aspectRatio: ratio,
+    resizeMode,
+
+    borderTopLeftRadius: btlr || btr || blr || br || round,
+    borderTopRightRadius: btrr || btr || brr || br || round,
+    borderBottomLeftRadius: bblr || bbr || blr || br || round,
+    borderBottomRightRadius: bbrr || bbr || brr || br || round,
+  }
+
+  const source = typeof src === 'string' ? { uri: src } : src
+
+  const sourceMini = srcMini
+    ? typeof srcMini === 'string'
+      ? { uri: srcMini }
+      : srcMini
+    : null
+
+  const AnimatedImage = Animated.createAnimatedComponent(RNImage)
+  const opacity = new Animated.Value(0)
+
+  const onLoadEnd = () => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start()
+  }
+
+  const [loaded, setLoaded] = useState(false)
+
+  if (sourceMini) {
+    useEffect(() => {
+      if (shouldLoad) setLoaded(true)
+    }, [shouldLoad])
+  }
+
+  return sourceMini ? (
+    <ImageBackground source={sourceMini} style={style} blurRadius={2}>
+      {loaded && (
+        <AnimatedImage
+          source={source}
+          style={{ ...style, opacity }}
+          onLoadEnd={onLoadEnd}
+        />
+      )}
+    </ImageBackground>
+  ) : (
+    <AnimatedImage
       source={source}
-      style={{
-        width: '100%',
-        height: '100%',
-        maxHeight: props.wh || props.h,
-        maxWidth: props.wh || props.w,
-
-        borderTopLeftRadius:
-          props.btlr || props.btr || props.blr || props.br || round,
-        borderTopRightRadius:
-          props.btrr || props.btr || props.brr || props.br || round,
-        borderBottomLeftRadius:
-          props.bblr || props.bbr || props.blr || props.br || round,
-        borderBottomRightRadius:
-          props.bbrr || props.bbr || props.brr || props.br || round,
-      }}
+      style={{ ...style, opacity }}
+      onLoadEnd={onLoadEnd}
     />
   )
 }

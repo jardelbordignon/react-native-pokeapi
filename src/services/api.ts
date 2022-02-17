@@ -77,3 +77,5 @@ export class ApiService {
 }
 
 export const pokeapi = new ApiService('https://pokeapi.co/api/v2/pokemon')
+
+export const localApi = new ApiService('http://192.168.0.109:3001')
